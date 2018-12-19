@@ -1,0 +1,7 @@
+Pins
+=========
+5  12v 10A fuse  BN
+6  Gnd WH/BK (for 12v circuit)
+7  Gnd (for 5v circuit)
+9  0-5v feedback signal
+10 Ref 5v 
