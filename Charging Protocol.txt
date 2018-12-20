@@ -1,0 +1,47 @@
+Charging Protocol for TesLorean
+===============================
+
+Initialization Requirements
+---------------------------
+- Key in 'Accessories' (#1) position
+- Handbrake On
+- Drive Unit confirmation of Neutral gear
+- "Charge" button pressed on the keypad
+- EVSE plugged in OR wait until EVSE plugged in
+
+INITIATING CHARGING SEQUENCE
+- Trip computer requests charge readiness status
+	- from Thermal Controller
+	- from Battery Control Module
+	- from Charge Controller
+- Thermal Control confirms readiness for charging, and if not why
+- Battery Control Module confirms readiness for charging, and if not why
+- Charger Controller confirms readiness for charging, and if not why
+- Trip Computer signals to Charge Controller to start charging
+
+CHARGE CONTROLLER INITIATING CHARGING
+- Charger Controller requests that Battery Control Module closes contactors for charging
+- Battery Control Module signals that contactors are closed
+- Charger Controller initiates charging
+- Charger Controller signals that charging is underway
+	- Thermal controller receives and begins charger temp mgt
+	- Trip Computer receives and updates internal status and enables KeyPad charging lights
+	- Instrument controller displays charging message and status on OLED displays, updates charge gauge
+- Charger selects and manages the charge profile
+
+CHARGE CONTROLLER WHILE CHARGING
+- Battery Control Module reports (frequency = ?) on the status percentage of the battery charge
+- Battery Control Module monitors individual cell voltages, detects over or uneven charging and reports
+- Thermal Controller will monitor, manage and report on thermal status and events
+
+END OF CHARGING EVENTS
+- Charger reports that battery is fully charged
+- Charging interrupted and why (heat/cold/EVSE/overcharged cell conditions)
+
+CHARGE SHUTDOWN SEQUENCE
+- Charger Controller requests the Battery Control Module opens the contactors
+- Battery Control Module confirms that the contactors are open
+- Charger signals that charging is completed
+- Trip Computer updates internal status and updates the KeyPad lights
+- Thermal Control Module removes all control actions
+- Instrument cluster updates gauge and OLED displays
